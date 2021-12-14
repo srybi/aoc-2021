@@ -38,14 +38,17 @@ least_common = get_bits(False)
 
 def get_perfect_str(perfect):
     with open('input.txt') as input:
-        lines = input.read().splitlines()
-        for i in range(length):
+        lines = list(set(input.read().splitlines()))
+        for index in range(length):
             for line in lines:
                 if len(lines) == 1:
                     return lines[0]
-                if line[i] != perfect[i]:
+                if line[index] != perfect[index]:
                     lines.remove(line)
 
+#THERE WERE DUPLICATES IN THE INPUT FILE 
+def remove_values_from_list(the_list, val):
+   return [value for value in the_list if value != val]
 
 
 oxygen_generator_rating = int(get_perfect_str(most_common), 2)
