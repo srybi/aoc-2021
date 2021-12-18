@@ -6,7 +6,7 @@ class TestDay4(unittest.TestCase):
 
     def test_init_board_array(self):
         #given:
-        board_str = "49  0  9 90  8\n41 88 56 13 6\n17 11 45 26 75\n29 62 27 83 36\n31 78  1 55 38"
+        board_str = "49  0  9 90  8\n41 88 56 13 6\n17 11 45 26 75\n29 62 27 83 36\n31 78  1 55 38\n"
         board_array = [ [49, 0, 9, 90, 8], 
                         [41, 88, 56, 13, 6], 
                         [17, 11, 45, 26, 75],
@@ -101,15 +101,24 @@ class TestDay4(unittest.TestCase):
         #given
         test_board = Board("52 53 19 56 80\n94 33  3 78 32\n10 89 66 48 55\n99 23 88  8 39\n76 75 44 79 14")
         num = 88
-        nums = [0, 88, 11, 62, 78, 83, 8, num]
+        nums = [52, 94, 10, 99, 76, 33, num]
         #when
         for n in nums:
             test_board.mark_board(n)
         result = test_board.check_board(num)
         #than
         self.assertEqual(result, sum(nums) * num)
+    
+    def test_check_board_failed(self):
+        test_board = Board("52 53 19 56 80\n94 33  3 78 32\n10 89 66 48 55\n99 23 88  8 39\n76 75 44 79 14")
+        num = 88
+        nums = [52, 94, 10, num]
 
+        for n in nums:
+            test_board.mark_board(n)
+        result = test_board.check_board(num)
 
+        self.assertEqual(result, -1)
 
 
 if __name__ == '__main__':
